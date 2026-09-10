@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test Runner</title></head>
+<body>
+<h1>Running Tests...</h1>
+<iframe id="test-frame" src="index.html" style="width:1000px; height:500px; border: 2px solid #ccc; margin-top: 20px;"></iframe>
+<script>
+    window.onload = () => {
+        const frame = document.getElementById('test-frame');
+        const win = frame.contentWindow;
+        const doc = frame.contentDocument;
+        let results = [];
+        
+        function assert(condition, message) {
+            results.push({ passed: !!condition, message });
+        }
+
+        setTimeout(() => {
+            try {
+                // Test 1: Contact Form structure
+                const form = doc.getElementById('contactForm');
+                assert(form !== null, "Contact form exists in the DOM");
+                const nameInput = doc.getElementById('contactName');
+                const emailInput = doc.getElementById('contactEmail');
+                const messageInput = doc.getElementById('contactMessage');
+                assert(nameInput && emailInput && messageInput, "Contact form has required input fields with correct IDs");
+
+                // Test 2: Nav Scroll Animation
+                const nav = doc.querySelector('nav');
+                assert(nav.classList.contains('py-6'), "Nav should have default py-6 padding initially");
+                
+                // Simulate actual physical scroll inside the visible iframe
+                win.scrollTo(0, 100);
+                
+                setTimeout(() => {
+                    try {
+                        assert(nav.classList.contains('py-4'), "Nav should shrink to py-4 padding after scrolling down");
+                        assert(nav.classList.contains('shadow-lg'), "Nav should have shadow-lg after scrolling down");
+                    } catch(e) {
+                        assert(false, "Scroll assertions failed: " + e.message);
+                    }
+
+                    // Render results to screen
+                    let html = "<h1>Unit Test Results</h1><ul>";
+                    let passed = 0;
+                    results.forEach(res => {
+                        html += `<li style="color: ${res.passed ? 'green' : 'red'}; font-size: 18px; margin-bottom: 10px;">
+                            ${res.passed ? '✅ PASS' : '❌ FAIL'}: ${res.message}
+                        </li>`;
+                        if(res.passed) passed++;
+                    });
+                    html += `</ul><h2>Total: ${results.length} | Passed: ${passed} | Failed: ${results.length - passed}</h2>`;
+                    document.body.innerHTML = html;
+
+                    // Post results
+                    fetch('http://localhost:8001/results', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(results)
+                    }).catch(e => console.log("Failed to send to python test server"));
+                }, 200); // Wait for scroll event to fire
+
+            } catch(e) {
+                assert(false, "Test execution failed: " + e.message);
+                document.body.innerHTML = "<h1>Test framework crashed</h1><p>" + e.message + "</p>";
+            }
+
+        }, 1500); // Wait 1.5s for initial GSAP animations to complete
+    };
+</script>
+</body>
+</html>

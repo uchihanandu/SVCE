@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVCE | Sree Venkateswara Consulting Engineers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css?v=3">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        logo: ['"Glacial Indifference"', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#fdfbf7', // Warm ivory light background
+                        surface: '#ffffff', // Pure white for cards
+                        foreground: '#1a1a1a', // Dark charcoal text
+                        muted: '#5c5c5c',
+                        border: '#e6e0d4',
+                        gold: {
+                            DEFAULT: '#B8860B', // Dark goldenrod for light bg contrast
+                            light: '#DAA520',
+                            dark: '#8B6508'
+                        }
+                    },
+                    backgroundImage: {
+                        /* Indian architectural heritage motif (Lotus / Arch pattern) */
+                        'heritage-pattern': "url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M50 0 C60 20 80 40 100 50 C80 60 60 80 50 100 C40 80 20 60 0 50 C20 40 40 20 50 0 Z\" fill=\"none\" stroke=\"%23B8860B\" stroke-width=\"0.5\" stroke-opacity=\"0.15\"/%3E%3Cpath d=\"M50 20 C55 35 65 45 80 50 C65 55 55 65 50 80 C45 65 35 55 20 50 C35 45 45 35 50 20 Z\" fill=\"%23B8860B\" fill-opacity=\"0.03\"/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-foreground font-sans antialiased selection:bg-gold selection:text-white relative">
+    
+    <!-- Background Heritage Pattern -->
+    <div class="fixed inset-0 bg-heritage-pattern pointer-events-none z-[-1] opacity-70"></div>
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center overflow-hidden">
+        
+        <!-- Custom Chola-inspired Temple Ceiling Pattern (Deep Red Etching) -->
+        <div class="absolute inset-0 z-0 opacity-100" style="background-image: url('data:image/svg+xml,%3Csvg width=\'120\' height=\'120\' viewBox=\'0 0 120 120\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' stroke=\'%238B0000\' stroke-width=\'1\' opacity=\'0.25\'%3E%3Crect x=\'0\' y=\'0\' width=\'120\' height=\'120\' /%3E%3Ccircle cx=\'60\' cy=\'60\' r=\'54\'/%3E%3Ccircle cx=\'60\' cy=\'60\' r=\'36\'/%3E%3Cpath d=\'M 60 6 Q 78 36 60 60 Q 42 36 60 6 Z\'/%3E%3Cpath d=\'M 60 114 Q 78 84 60 60 Q 42 84 60 114 Z\'/%3E%3Cpath d=\'M 6 60 Q 36 78 60 60 Q 36 42 6 60 Z\'/%3E%3Cpath d=\'M 114 60 Q 84 78 60 60 Q 84 42 114 60 Z\'/%3E%3Cline x1=\'21.8\' y1=\'21.8\' x2=\'98.2\' y2=\'98.2\'/%3E%3Cline x1=\'21.8\' y1=\'98.2\' x2=\'98.2\' y2=\'21.8\'/%3E%3C/g%3E%3C/svg%3E'); background-size: 120px 120px;"></div>
+        
+        <!-- Protect Logo: Fade pattern out in the center -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#fdfbf7_30%,transparent_100%)] z-10 pointer-events-none"></div>
+
+        <div class="overflow-hidden mb-8 flex items-center justify-center relative z-20">
+            <h1 class="text-4xl md:text-6xl font-logo font-bold tracking-tighter text-gold preloader-text">SVCE</h1>
+        </div>
+        <div class="w-48 h-[2px] bg-border rounded-full overflow-hidden relative z-20 shadow-sm">
+            <div class="h-full bg-gold w-0 preloader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor hidden md:block border-gold"></div>
+    <div class="cursor-dot hidden md:block bg-gold"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-6 md:px-12 text-foreground bg-background/90 backdrop-blur-md border-b border-border/80 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.02)]" aria-label="Main Navigation">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <a href="#" class="hover-target inline-block" aria-label="Home">
+                <img src="logo.png" alt="SVCE Logo" class="h-12 md:h-16 scale-[2.5] origin-left mix-blend-multiply object-contain translate-y-1.5 md:translate-y-2">
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-semibold tracking-wide">
+                <a href="#services" class="hover:text-gold transition-colors hover-target">SERVICES</a>
+                <a href="#about" class="hover:text-gold transition-colors hover-target">ABOUT</a>
+                <a href="#experience" class="hover:text-gold transition-colors hover-target">EXPERIENCE</a>
+                <a href="#contact" class="hover:text-gold transition-colors hover-target">CONTACT</a>
+            </div>
+            <button class="md:hidden flex flex-col gap-1.5 hover-target z-50" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                <div class="w-6 h-0.5 bg-gold"></div>
+                <div class="w-6 h-0.5 bg-gold"></div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center text-center justify-center px-6 md:px-12 pt-24 pb-12 max-w-7xl mx-auto relative z-10">
+        <!-- Subtle Architecture Arch frame around hero content -->
+        <div class="absolute top-32 right-10 bottom-10 left-10 border border-gold/20 rounded-t-[200px] pointer-events-none hidden lg:block opacity-50"></div>
+        
+        <div class="max-w-5xl relative z-10 flex flex-col items-center">
+            <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-[1.05] mb-6 hero-element font-serif text-foreground">
+                <span class="text-gold">Sree Venkateswara</span> <br />
+                Consulting Engineers.
+            </h1>
+            <p class="text-2xl md:text-3xl text-foreground font-light mb-8 max-w-2xl leading-snug hero-element">
+                Led by <span class="text-gold font-serif italic font-semibold">D. Venkateswara Rao</span>
+            </p>
+            <p class="text-lg md:text-xl text-muted max-w-2xl mb-12 leading-relaxed hero-element">
+                Shaping spaces with structural integrity and aesthetic brilliance. We drive efficiency and uncompromising quality across every phase of civil construction to deliver exceptional, enduring results.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 hero-element">
+                <a href="#contact" class="bg-gold text-white px-8 py-4 rounded-full font-medium shadow-lg shadow-gold/20 hover:bg-gold-dark transition-all hover-target inline-flex items-center gap-2">
+                    Start a project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#services" class="border border-gold text-gold px-8 py-4 rounded-full font-medium hover:bg-gold/5 transition-colors hover-target">
+                    View Services
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce hidden md:block hero-element">
+            <i data-lucide="arrow-down" class="text-gold opacity-70"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 md:px-12 bg-surface relative z-10 shadow-[0_-20px_40px_rgba(0,0,0,0.02)]">
+        <div class="max-w-7xl mx-auto pt-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 gsap-fade-up">
+                <div>
+                    <h2 class="text-gold font-semibold mb-4 uppercase tracking-widest text-sm flex items-center gap-4">
+                        <span class="w-8 h-px bg-gold inline-block"></span>
+                        Expertise
+                    </h2>
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold tracking-tight mb-4 text-foreground">Our Services</h3>
+                    <p class="text-lg text-muted max-w-xl">Comprehensive civil engineering solutions tailored to meet modern construction standards.</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 01 -->
+                <div class="service-card bg-background p-8 rounded-2xl border border-border hover:border-gold hover-target gsap-fade-up relative overflow-hidden group shadow-sm hover:shadow-xl hover:shadow-gold/10 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-gold/10 transition-colors"></div>
+                    <div class="service-number text-5xl font-serif font-bold mb-6 text-border group-hover:text-gold transition-colors">01</div>
+                    <h4 class="text-xl font-bold mb-3 text-foreground">Planning</h4>
+                    <p class="text-muted text-sm leading-relaxed">Master site planning, project feasibility, zoning compliance & municipal layout approvals.</p>
+                </div>
+                <!-- Service 02 -->
+                <div class="service-card bg-background p-8 rounded-2xl border border-border hover:border-gold hover-target gsap-fade-up relative overflow-hidden group shadow-sm hover:shadow-xl hover:shadow-gold/10 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-gold/10 transition-colors"></div>
+                    <div class="service-number text-5xl font-serif font-bold mb-6 text-border group-hover:text-gold transition-colors">02</div>
+                    <h4 class="text-xl font-bold mb-3 text-foreground">Designing</h4>
+                    <p class="text-muted text-sm leading-relaxed">Architectural drafting, structural RCC framing, structural calculations & detailed CAD drawings.</p>
+                </div>
+                <!-- Service 03 -->
+                <div class="service-card bg-background p-8 rounded-2xl border border-border hover:border-gold hover-target gsap-fade-up relative overflow-hidden group shadow-sm hover:shadow-xl hover:shadow-gold/10 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-gold/10 transition-colors"></div>
+                    <div class="service-number text-5xl font-serif font-bold mb-6 text-border group-hover:text-gold transition-colors">03</div>
+                    <h4 class="text-xl font-bold mb-3 text-foreground">Construction</h4>
+                    <p class="text-muted text-sm leading-relaxed">Hi-rise residential apartments, commercial complexes, wedding halls, cinema halls & clear-span structures.</p>
+                </div>
+                <!-- Service 04 -->
+                <div class="service-card bg-background p-8 rounded-2xl border border-border hover:border-gold hover-target gsap-fade-up relative overflow-hidden group shadow-sm hover:shadow-xl hover:shadow-gold/10 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-gold/10 transition-colors"></div>
+                    <div class="service-number text-5xl font-serif font-bold mb-6 text-border group-hover:text-gold transition-colors">04</div>
+                    <h4 class="text-xl font-bold mb-3 text-foreground">Development</h4>
+                    <p class="text-muted text-sm leading-relaxed">End-to-end project management, site execution, quality assurance, cost control & on-schedule delivery.</p>
+                </div>
+                <!-- Service 05 -->
+                <div class="service-card bg-background p-8 rounded-2xl border border-border hover:border-gold hover-target gsap-fade-up relative overflow-hidden group shadow-sm hover:shadow-xl hover:shadow-gold/10 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-gold/10 transition-colors"></div>
+                    <div class="service-number text-5xl font-serif font-bold mb-6 text-border group-hover:text-gold transition-colors">05</div>
+                    <h4 class="text-xl font-bold mb-3 text-foreground">Interior Design</h4>
+                    <p class="text-muted text-sm leading-relaxed">Optimized spatial planning, interior aesthetics, acoustic treatments & high-grade material finishes.</p>
+                </div>
+                <!-- Service 06 -->
+                <div class="service-card bg-background p-8 rounded-2xl border border-border hover:border-gold hover-target gsap-fade-up relative overflow-hidden group shadow-sm hover:shadow-xl hover:shadow-gold/10 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-gold/10 transition-colors"></div>
+                    <div class="service-number text-5xl font-serif font-bold mb-6 text-border group-hover:text-gold transition-colors">06</div>
+                    <h4 class="text-xl font-bold mb-3 text-foreground">Renovation</h4>
+                    <p class="text-muted text-sm leading-relaxed">Structural retrofitting, building modernization, facade redesigns, remodelling & structural repairs.</p>
+                </div>
+                <!-- Service 07 -->
+                <div class="service-card bg-background p-8 rounded-2xl border border-border hover:border-gold hover-target md:col-span-2 lg:col-span-3 lg:flex gap-8 items-center gsap-fade-up relative overflow-hidden group shadow-sm hover:shadow-xl hover:shadow-gold/10 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-gold/10 transition-colors"></div>
+                    <div class="service-number text-5xl font-serif font-bold mb-4 lg:mb-0 text-border group-hover:text-gold transition-colors shrink-0">07</div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2 text-foreground">All Types of Civil Works</h4>
+                        <p class="text-muted max-w-3xl leading-relaxed">Comprehensive civil infrastructure: deep foundations, earthworks, rice mills, cold storages & religious shrines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Strengths Section -->
+    <section id="about" class="py-24 px-6 md:px-12 relative z-10">
+        <div class="max-w-7xl mx-auto pt-12">
+            <!-- Row 1: Founder and Core Principles -->
+            <div class="grid md:grid-cols-2 gap-16 mb-24 items-start">
+                
+                <!-- The Founder -->
+                <div class="gsap-fade-up">
+                    <h2 class="text-gold font-semibold mb-4 uppercase tracking-widest text-sm flex items-center gap-4">
+                        <span class="w-8 h-px bg-gold inline-block"></span>
+                        The Founder
+                    </h2>
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold tracking-tight mb-8 text-foreground">
+                        D. Venkateswara Rao
+                    </h3>
+                    <p class="text-lg text-muted mb-6 leading-relaxed">
+                        With over three decades of extensive experience in civil engineering and project management, D.Venkateswara Rao has consistently delivered high-quality construction projects across multiple domains.
+                    </p>
+                    <p class="text-lg text-muted leading-relaxed">
+                        From being a Consulting Engineer to a Project Manager for Hi-Rise Residential Apartments, his career is built on a foundation of fostering collaboration, driving innovation, and maintaining stringent safety standards.
+                    </p>
+                </div>
+                
+                <!-- Core Principles -->
+                <div class="gsap-fade-up">
+                    <h2 class="text-sm font-semibold uppercase tracking-widest text-gold mb-6 flex items-center gap-4">
+                        Core Principles
+                        <span class="w-8 h-px bg-gold inline-block"></span>
+                    </h2>
+                    <div class="flex flex-col gap-5">
+                        <div class="flex items-center gap-4 bg-background border border-border p-4 rounded-2xl shadow-sm hover:border-gold/30 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="eye" class="w-6 h-6 text-gold"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-serif font-bold text-lg text-foreground leading-tight">Clarity</h5>
+                                <p class="text-sm text-muted mt-0.5">The Trust You Deserve</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-background border border-border p-4 rounded-2xl shadow-sm hover:border-gold/30 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="hammer" class="w-6 h-6 text-gold"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-serif font-bold text-lg text-foreground leading-tight">Craft</h5>
+                                <p class="text-sm text-muted mt-0.5">The Thing We Love</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-background border border-border p-4 rounded-2xl shadow-sm hover:border-gold/30 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="heart" class="w-6 h-6 text-gold"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-serif font-bold text-lg text-foreground leading-tight">Care</h5>
+                                <p class="text-sm text-muted mt-0.5">The Relationships We Build</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Row 2: Project Domains (Centered) -->
+            <div class="max-w-5xl mx-auto bg-background p-10 md:p-16 rounded-3xl gsap-fade-up border border-border relative overflow-hidden group shadow-xl shadow-gold/5">
+                <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <h3 class="text-3xl font-serif font-bold mb-12 text-gold text-center relative z-10">Domains of Proven Expertise</h3>
+                
+                <div class="grid md:grid-cols-3 gap-10 relative z-10 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full bg-surface border border-gold/30 flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="building-2" class="w-7 h-7 text-gold"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg text-foreground mb-3 leading-tight">Hi-Rise Residential & Commercial</h4>
+                        <p class="text-muted text-sm leading-relaxed">Extensive expertise in managing large-scale apartment complexes and commercial buildings.</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full bg-surface border border-gold/30 flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="home" class="w-7 h-7 text-gold"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg text-foreground mb-3 leading-tight">Specialized Structures</h4>
+                        <p class="text-muted text-sm leading-relaxed">Wedding halls, cinema halls, rice mills, and cold storages with complex structural requirements.</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full bg-surface border border-gold/30 flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="landmark" class="w-7 h-7 text-gold"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg text-foreground mb-3 leading-tight">Religious & Institutional</h4>
+                        <p class="text-muted text-sm leading-relaxed">Development of churches, temples, mosques, and other institutional civil works.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 px-6 md:px-12 bg-surface border-y border-border relative z-10 shadow-[0_20px_40px_rgba(0,0,0,0.02)]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-gold font-semibold mb-4 uppercase tracking-widest text-sm text-center flex items-center justify-center gap-4 gsap-fade-up">
+                <span class="w-8 h-px bg-gold inline-block"></span>
+                History
+                <span class="w-8 h-px bg-gold inline-block"></span>
+            </h2>
+            <h3 class="text-4xl md:text-5xl font-serif font-bold tracking-tight mb-20 text-center text-foreground gsap-fade-up">Career Roadmap</h3>
+            
+            <div class="max-w-4xl mx-auto relative pl-8 md:pl-0">
+                <!-- Timeline Line -->
+                <div class="absolute left-[7px] md:left-1/2 md:-ml-px top-0 bottom-0 w-[2px] bg-border hidden md:block"></div>
+                <div class="absolute left-8 top-0 bottom-0 w-[2px] bg-border md:hidden"></div>
+
+                <!-- Timeline Item 1 -->
+                <div class="relative flex flex-col md:flex-row items-start md:justify-between mb-20 group gsap-fade-up">
+                    <div class="md:w-[45%] text-left md:text-right pr-8 pb-4 md:pb-0 relative z-10 order-2 md:order-1 ml-6 md:ml-0">
+                        <h4 class="text-xl font-bold text-foreground mb-1 group-hover:text-gold transition-colors">Sita Shelters Pvt Ltd</h4>
+                        <p class="text-gold text-sm font-semibold mb-3">Project Manager</p>
+                        <p class="text-muted text-sm leading-relaxed">Construction of Hi-Rise Residential Apartments in Hyderabad.</p>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full border-2 border-surface bg-gold z-20 group-hover:scale-150 shadow-[0_0_10px_rgba(184,134,11,0.3)] group-hover:shadow-[0_0_15px_rgba(184,134,11,0.6)] transition-all duration-300 mt-1.5 md:mt-1"></div>
+                    <div class="md:w-[45%] pl-8 md:pl-8 text-left relative z-10 order-1 md:order-3 mb-2 md:mb-0 ml-6 md:ml-0 text-sm font-bold text-foreground uppercase tracking-wider mt-1">
+                        2023 — July 2026
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative flex flex-col md:flex-row items-start md:justify-between mb-20 group gsap-fade-up">
+                    <div class="md:w-[45%] text-left md:text-right pr-8 pb-4 md:pb-0 relative z-10 order-2 md:order-1 ml-6 md:ml-0">
+                        <h4 class="text-xl font-bold text-foreground mb-1 group-hover:text-gold transition-colors">Vishnu Infra</h4>
+                        <p class="text-gold text-sm font-semibold mb-3">Project Manager</p>
+                        <p class="text-muted text-sm leading-relaxed">Construction of Hi-Rise Residential Apartments in Hyderabad.</p>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full border-2 border-surface bg-border z-20 group-hover:bg-gold group-hover:scale-150 group-hover:shadow-[0_0_15px_rgba(184,134,11,0.5)] transition-all duration-300 mt-1.5 md:mt-1"></div>
+                    <div class="md:w-[45%] pl-8 md:pl-8 text-left relative z-10 order-1 md:order-3 mb-2 md:mb-0 ml-6 md:ml-0 text-sm font-bold text-muted group-hover:text-foreground uppercase tracking-wider mt-1 transition-colors">
+                        2007 — 2023
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative flex flex-col md:flex-row items-start md:justify-between mb-20 group gsap-fade-up">
+                    <div class="md:w-[45%] text-left md:text-right pr-8 pb-4 md:pb-0 relative z-10 order-2 md:order-1 ml-6 md:ml-0">
+                        <h4 class="text-xl font-bold text-foreground mb-1 group-hover:text-gold transition-colors">Sree Venkateswara Consulting Engineers</h4>
+                        <p class="text-gold text-sm font-semibold mb-3">Consulting Engineer (Sole Proprietor)</p>
+                        <p class="text-muted text-sm leading-relaxed">Planning, designing and construction of multistoried buildings like Wedding halls, Cinema halls, Rice mills, Residential buildings, Church, Temples, Mosques and all Civil works.</p>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full border-2 border-surface bg-border z-20 group-hover:bg-gold group-hover:scale-150 group-hover:shadow-[0_0_15px_rgba(184,134,11,0.5)] transition-all duration-300 mt-1.5 md:mt-1"></div>
+                    <div class="md:w-[45%] pl-8 md:pl-8 text-left relative z-10 order-1 md:order-3 mb-2 md:mb-0 ml-6 md:ml-0 text-sm font-bold text-muted group-hover:text-foreground uppercase tracking-wider mt-1 transition-colors">
+                        Jan 2004 — Aug 2007
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="relative flex flex-col md:flex-row items-start md:justify-between group gsap-fade-up">
+                    <div class="md:w-[45%] text-left md:text-right pr-8 pb-4 md:pb-0 relative z-10 order-2 md:order-1 ml-6 md:ml-0">
+                        <h4 class="text-xl font-bold text-foreground mb-1 group-hover:text-gold transition-colors">Sree Venkateswara Consulting Engineers</h4>
+                        <p class="text-gold text-sm font-semibold mb-3">Jr. Engineer (1997-2000) & Sr. Engineer (2000-2004)</p>
+                        <p class="text-muted text-sm leading-relaxed">Construction of Residential Apartments, Buildings, Wedding halls, Rice mills, Cinema halls, Cold storages.</p>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full border-2 border-surface bg-border z-20 group-hover:bg-gold group-hover:scale-150 group-hover:shadow-[0_0_15px_rgba(184,134,11,0.5)] transition-all duration-300 mt-1.5 md:mt-1"></div>
+                    <div class="md:w-[45%] pl-8 md:pl-8 text-left relative z-10 order-1 md:order-3 mb-2 md:mb-0 ml-6 md:ml-0 text-sm font-bold text-muted group-hover:text-foreground uppercase tracking-wider mt-1 transition-colors">
+                        Jan 1997 — Dec 2004
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="pt-24 bg-background relative z-10 overflow-hidden">
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div class="gsap-fade-up">
+                    <h2 class="text-gold font-semibold mb-4 uppercase tracking-widest text-sm flex items-center gap-4">
+                        <span class="w-8 h-px bg-gold inline-block"></span>
+                        Get in Touch
+                    </h2>
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold tracking-tight mb-8 text-foreground">Let's Build Something Great Together</h3>
+                    <p class="text-lg text-muted mb-12 max-w-lg">Ready to start your next project? Reach out to us for expert consultation, project management, and execution.</p>
+                    
+                    <div class="space-y-8">
+                        <a href="mailto:davu.venkat2411@gmail.com" class="flex items-center gap-5 text-lg text-foreground hover:text-gold transition-colors hover-target w-fit group font-medium">
+                            <div class="w-14 h-14 rounded-full bg-surface border border-border group-hover:border-gold/50 flex items-center justify-center transition-colors shadow-sm">
+                                <i data-lucide="mail" class="w-5 h-5 text-gold"></i>
+                            </div>
+                            davu.venkat2411@gmail.com
+                        </a>
+                        <a href="tel:+919440772411" class="flex items-center gap-5 text-lg text-foreground hover:text-gold transition-colors hover-target w-fit group font-medium">
+                            <div class="w-14 h-14 rounded-full bg-surface border border-border group-hover:border-gold/50 flex items-center justify-center transition-colors shadow-sm">
+                                <i data-lucide="phone" class="w-5 h-5 text-gold"></i>
+                            </div>
+                            +91 9440772411
+                        </a>
+                        <div class="flex items-start gap-5 text-lg text-muted w-fit pt-2">
+                            <div class="w-14 h-14 rounded-full bg-surface border border-border flex items-center justify-center shrink-0 shadow-sm">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-gold"></i>
+                            </div>
+                            <p class="mt-2 text-base leading-relaxed font-medium text-foreground">
+                                8-3-222/B/7/40&41, Flatno-202,<br>
+                                Gayathri Residency, D-block,<br>
+                                Madhuranagar, Yusufguda,<br>
+                                Hyderabad, 500038
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-surface p-8 md:p-12 rounded-3xl border border-border shadow-xl shadow-gold/5 gsap-fade-up">
+                    <form id="contactForm" class="space-y-8">
+                        <div>
+                            <label for="contactName" class="block text-sm font-semibold text-muted mb-2 uppercase tracking-wide">Name</label>
+                            <input type="text" id="contactName" required class="w-full bg-transparent border-b-2 border-border pb-3 text-foreground focus:outline-none focus:border-gold transition-colors" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="contactEmail" class="block text-sm font-semibold text-muted mb-2 uppercase tracking-wide">Email</label>
+                            <input type="email" id="contactEmail" required class="w-full bg-transparent border-b-2 border-border pb-3 text-foreground focus:outline-none focus:border-gold transition-colors" placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label for="contactMessage" class="block text-sm font-semibold text-muted mb-2 uppercase tracking-wide">Message</label>
+                            <textarea id="contactMessage" required rows="4" class="w-full bg-transparent border-b-2 border-border pb-3 text-foreground focus:outline-none focus:border-gold transition-colors resize-none" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="bg-gold text-white px-8 py-4 rounded-full font-medium hover:bg-gold-dark shadow-lg shadow-gold/20 transition-all hover-target w-full flex items-center justify-center gap-2 mt-4">
+                            Send Message <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-24 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-sm text-muted font-medium pb-12">
+                <p>&copy; 2026 SVCE. All rights reserved.</p>
+                <p>Designed with precision.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="app.js?v=3"></script>
+</body>
+</html>
+
